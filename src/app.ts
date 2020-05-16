@@ -4,29 +4,32 @@ import { urlencoded } from 'body-parser';
 
 var bodyParser = require('body-parser');
 const app: express.Application = express();
-const es6Renderer = require('express-es6-template-engine');
 const PORT = process.env.PORT || 5000;
 const morgan = require ('morgan');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var socket = require('socket.io');
 
-app.engine('html', es6Renderer);
 app.set('views', 'views');
-app.set('view engine', 'html');
+app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(morgan('dev'));
+app.use(express.static('public'));
 
-app.listen(PORT, function () {
+
+var server = app.listen(PORT, function () {
   console.log('Server on port '+PORT);
 });
 
+var io = socket(server);
 
-app.get('/', function (req, res) {
-  res.send("Hola")
+io.on('coneccition',function(socket){
+  console.log('Socket conected')
+})
+
+app.get('/', function (_req, _res) {
+  
 });
 
-app.post('/', urlencodedParser ,function(req,res){
-
-});
 
 
