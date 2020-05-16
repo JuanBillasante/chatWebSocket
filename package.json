@@ -17,11 +17,11 @@
     "socket.io": "^2.3.0",
     "ts-node": "^8.10.1",
     "ts-node-dev": "^1.0.0-pre.30",
-    "typescript": "^3.1.1"
+    "typescript": "^3.9.2"
   },
   "devDependencies": {},
   "scripts": {
-    "tsc": "tsc",
+    "command": "C:\\Users\\juan.billasante\\Desktop\\Repositorios GitHub\\chatWebSocket\node_modules\\.bin\\tsc",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/app.ts",
     "prod": "tsc && node ./build/app.js"
   },
