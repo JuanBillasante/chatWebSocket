@@ -19,9 +19,9 @@ Chat.io=socket;
 
 let chat : Chat = new Chat (messageReceived);
 
-document.querySelector('#form')?.addEventListener('submit',(ev)=>{
+(document.querySelector("#form")as HTMLInputElement).addEventListener('submit',(ev)=>{
     ev.preventDefault();
-    const message : string = (document.querySelector("#mensaje") as HTMLInputElement).value;
+    const message : string = (document.querySelector("#message") as HTMLInputElement).value;
     chat.emmitMessage(message);
     return false;
 })

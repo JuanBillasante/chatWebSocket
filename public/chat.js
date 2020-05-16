@@ -8,7 +8,8 @@ var Chat = /** @class */ (function () {
         Chat.io.emit('message', message);
     };
     return Chat;
-}());
+});
+
 function messageReceived(response) {
 }
 Chat.io = socket;

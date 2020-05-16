@@ -19,7 +19,8 @@ var io = socket(server);
 io.on('connection', function (socket) {
     console.log('Socket connected');
     socket.on('message', function (message) {
+        console.log('Hola');
         console.log(message);
-        io.emit('mensaje', { message: message });
+        io.emit('message', { message: message });
     });
 });

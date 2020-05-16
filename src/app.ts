@@ -28,13 +28,14 @@ var server = app.listen(PORT, function () {
 
 var io = socket(server);
 
-io.on('connection', (socket:socketIO.Socket)=>{
-  console.log('Socket connected')
-  socket.on('message',(message:string)=>{
+io.on('connection', (socket : socketIO.Socket)=>{
+  console.log('Socket connected');
+  socket.on('message',(message : string)=>{
+    console.log('Hola');
     console.log(message);
-    io.emit('mensaje',{message})
-  })
-})
+    io.emit('message',{message});
+  });
+});
 
 
 
