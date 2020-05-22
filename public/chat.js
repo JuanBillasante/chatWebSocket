@@ -1,5 +1,5 @@
 "use strict";
-var socket = window.io();
+var socket = io.connect('http://localhost:5000/',{'forceNew':true})
 var Chat = /** @class */ (function () {
     function Chat(cb) {
         this.cb = cb;
