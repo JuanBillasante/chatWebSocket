@@ -1,5 +1,10 @@
-"use strict";
-var socket = io.connect('http://localhost:5000/',{'forceNew':true})
+var socket = io.connect('http://localhost:5000/', {'forceNew': true});
+
+socket.on('message',function(data){
+    console.log(data);
+})
+
+
 var Chat = /** @class */ (function () {
     function Chat(cb) {
         this.cb = cb;
@@ -8,15 +13,15 @@ var Chat = /** @class */ (function () {
         Chat.io.emit('message', message);
     };
     return Chat;
-});
-
+}());
 function messageReceived(response) {
 }
 Chat.io = socket;
 var chat = new Chat(messageReceived);
-document.querySelector("#form").addEventListener('submit', function (ev) {
+chat.emmitMessage("Hola servidor");
+/* (document.querySelector("#form")as HTMLInputElement).addEventListener('submit',(ev)=>{
     ev.preventDefault();
-    var message = document.querySelector("#message").value;
+    const message : string = (document.querySelector("#message") as HTMLInputElement).value;
     chat.emmitMessage(message);
     return false;
-});
+})  */ 

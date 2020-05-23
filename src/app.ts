@@ -11,9 +11,8 @@ const socket = require('socket.io');
 const http = require('http');
 
 
-app.use(morgan('dev'));
+/* app.use(morgan('dev')); */
 app.use(express.static('public'));
-
 
 
 var server = app.listen(PORT, function () {
@@ -25,8 +24,12 @@ var io = socket(server);
 
 io.on('connection', (socket : socketIO.Socket)=>{
   console.log('Socket connected');
+  socket.emit('message',{
+    id: 1,
+    text: 'Hola servidor'
+  })
   socket.on('message',(message : string)=>{
-
+    console.log('message');
   });
 });
 
