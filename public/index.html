@@ -40,9 +40,9 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
     <script type="text/javascript">
-    var socket = io();
+    let socket = io();
     $('#mensaje').keypress(function(event){
-        var keycode = (event.keyCode ? event.keyCode : event.which);
+        let keycode = (event.keyCode ? event.keyCode : event.which);
         if(keycode == '13'){
             socket.emit('mensaje', {text: $('#mensaje').val(), timestamp: new Date()});
             
