@@ -1,56 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="index.css" rel="stylesheet">
-
-    <title>Chat</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Chat general</title>
 </head>
-<body>
- 
+    <style>
+        body{
+            background-color: slategrey;
 
-<div class="container">
-    <div class="row">
-        <div class="col s12">
+        }
+    </style>
+
+<body>
+    <div class="container">
+        <div class="row">
             <h1 class="center">Chat general</h1>
-            <div id="box">
-               <ul id="mensajes">
-        
-                </ul>
-            </div>
-            <form id="form">
-                <div class="input-field col s9">
-                    <i class="material-icons prefix">textsms</i>
-                    <input type="text" id="message" placeholder="Escriba un mensaje" autocomplete="false">
-                </div>
-                <div class="col s3">
-                    <button type="submit" class="waves-effect waves-light btn-small blue accent-1"><i class="material-icons left">send</i>Enviar</button>
-                </div>
-            </form>
+            <ul>
+                <li>
+                  <div>
+                    <ul id="mensajes"></ul>
+                  </div>
+                </li>
+              </ul>
+            <div class="input-group col s9">
+                <input  id="mensaje" type="text" class="form-control" placeholder="Escriba un texto" autocomplete="false"> 
+              </div>
         </div>
     </div>
-</div>
-   
-   
-   
 
-    
-    <script src="chat.js"></script>
+
+
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript">
+    var socket = io();
+    $('#mensaje').keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            socket.emit('mensaje', {text: $('#mensaje').val(), timestamp: new Date()});
+            
+        }
+    });
+
+    socket.on('mensaje', (data) => {
+        $('#mensajes').append($('<li>').text(data.timestamp+ " | " + mensaje.value));
+            mensaje.value='';
+    })
+
+  </script>
   
-    <script>
-       document.addEventListener('DOMContentLoaded', function() {
-        M.AutoInit();
-        });
-    </script>
-    <script>
-        console.log(io());
-    </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+     M.AutoInit();
+     });
+ </script>
+
 </body>
 </html>
